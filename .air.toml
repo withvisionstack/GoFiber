@@ -1,0 +1,22 @@
+# Arquivo: .air.toml
+
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # O binário que o Air vai executar
+  entrypoint = "tmp/main.exe"
+
+  # Comando de build: gera o executável dentro da pasta tmp
+  cmd = "go build -o ./tmp/main.exe ."
+
+  # Extensões de arquivos que o Air deve observar
+  include_ext = ["go", "tpl", "tmpl", "html"]
+
+  # Pastas que não devem ser monitoradas
+  exclude_dir = ["assets", "tmp", "vendor"]
+
+  # Delay em ms antes de reiniciar após mudanças
+  delay = 1000
+
+

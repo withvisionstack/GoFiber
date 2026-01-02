@@ -1,0 +1,54 @@
+# ---- Go ----
+# Binários compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Diretórios temporários
+tmp/
+bin/
+vendor/
+
+# Arquivos de build
+*.log
+
+# ---- Node / React ----
+# Dependências
+node_modules/
+
+# Build do frontend
+build/
+dist/
+
+# Cache
+.cache/
+*.tmp
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---- Sistema / Editor ----
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# ---- Ambiente ----
+# Arquivos de configuração local
+.env
+.env.local
+.env.*.local
+
