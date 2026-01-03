@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors" // ✅ import do middleware
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -26,14 +26,14 @@ var collection *mongo.Collection
 func main() {
 	fmt.Println("hello world")
 
-	// Carregar variáveis de ambiente
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file:", err)
-	}
+	// ✅ Carregar variáveis de ambiente localmente (ignorar erro se não existir)
+	_ = godotenv.Load(".env")
 
 	// Pegar URI do MongoDB
 	MONGODB_URI := os.Getenv("MONGODB_URI")
+	if MONGODB_URI == "" {
+		log.Fatal("MONGODB_URI não definido")
+	}
 
 	// Conectar ao MongoDB Atlas
 	clientOptions := options.Client().ApplyURI(MONGODB_URI)
@@ -68,9 +68,10 @@ func main() {
 	app.Patch("/api/todos/:id", updateTodo)
 	app.Delete("/api/todos/:id", deleteTodo)
 
+	// Porta dinâmica (Render define PORT)
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "4000" // ✅ alinhar com seu frontend BASE_URL
+		port = "4000" // fallback local
 	}
 
 	log.Fatal(app.Listen("0.0.0.0:" + port))
@@ -164,3 +165,4 @@ func deleteTodo(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(fiber.Map{"success": true})
 }
+
