@@ -43,8 +43,7 @@ http://localhost:4000/api
 
 🌐 Deploy em produção
 A API está publicada no Render em:
-
-https://gofiber-0oy4.onrender.com/api
+https://gofiber-0oy4.onrender.com
 
 📌 Rotas disponíveis
 GET 
